@@ -26,10 +26,9 @@ const commandHandler = async (client: Client) => {
     try {
       console.log('Started refreshing application (/) commands.');
 
-      await rest.put(
-        Routes.applicationGuildCommands(client.user!.id, '854330456207654933'),
-        { body: commands }
-      );
+      await rest.put(Routes.applicationCommands(client.user!.id), {
+        body: commands,
+      });
 
       console.log('Successfully reloaded application (/) commands.');
     } catch (error) {

@@ -1,7 +1,6 @@
 import { SlashCommandBuilder } from '@discordjs/builders';
 import { CommandInteraction, MessageEmbed } from 'discord.js';
 import { ICommand } from '../../types/ICommand';
-import si from 'systeminformation';
 
 const ping: ICommand = {
   data: new SlashCommandBuilder()
@@ -22,10 +21,6 @@ const ping: ICommand = {
       `${t}${interaction.client.guilds.cache.size} guilds${t}`,
       false
     );
-
-    si.cpuTemperature((data) => {
-      console.log(data);
-    });
 
     interaction.reply({
       embeds: [embed],

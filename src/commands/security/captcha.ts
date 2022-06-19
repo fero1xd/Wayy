@@ -22,6 +22,7 @@ const captcha: ICommand = {
     ),
   permissions: [Permissions.FLAGS.ADMINISTRATOR],
   execute: async (interaction) => {
+    // Get the text channel from options
     const channel = interaction.options.getChannel(
       'channel',
       true
@@ -31,12 +32,16 @@ const captcha: ICommand = {
 
     // Check for verifed role
     let verifiedRole = guild.roles.cache.find((r) => r.name === 'verified');
+
     if (!verifiedRole) {
       verifiedRole = await guild.roles.create({
         name: 'verified',
-        permissions: ['SEND_MESSAGES', 'READ_MESSAGE_HISTORY', 'VIEW_CHANNEL'],
+        permissions: ['SEND_MESSAGES', 'VIEW_CHANNEL'],
       });
     }
+
+    // Set permission for that role
+    await verifiedRole.setPermissions(['SEND_MESSAGES', 'VIEW_CHANNEL']);
 
     // Set permissions for each channel
     guild.channels.cache.forEach(async (c) => {
@@ -53,6 +58,7 @@ const captcha: ICommand = {
       }
     });
 
+    // Send the embed to specified channel
     const embed = new MessageEmbed()
       .setTitle('Captcha Verification')
       .setDescription('Click the button to verify your self')

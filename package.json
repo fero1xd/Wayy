@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "nodemon src/wayy.ts"
+    "dev": "nodemon src/wayy.ts",
+    "build": "tsc -p ."
   },
   "keywords": [],
   "author": "",
@@ -15,17 +16,10 @@
     "captcha-canvas": "^3.1.0",
     "discord-api-types": "^0.34.0",
     "discord.js": "^13.8.0",
-    "dotenv": "^16.0.1",
-    "glob": "^8.0.3",
-    "mongoose": "^6.3.8",
-    "redis": "^4.1.0",
-    "systeminformation": "^5.11.21"
+    "dotenv": "^16.0.1"
   },
   "devDependencies": {
     "@types/dotenv": "^8.2.0",
-    "@types/glob": "^7.2.0",
-    "@types/mongoose": "^5.11.97",
-    "@types/redis": "^4.0.11",
-    "@types/systeminformation": "^3.54.1"
+    "@types/glob": "^7.2.0"
   }
 }

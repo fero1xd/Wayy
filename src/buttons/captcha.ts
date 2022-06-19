@@ -55,11 +55,22 @@ const captcha: IButtonEvent = {
           );
         }
 
-        const verifiedRole = guild.roles.cache.find(
-          (r) => r.name === 'verified'
-        );
+        let verifiedRole = guild.roles.cache.find((r) => r.name === 'verified');
 
-        verifiedRole && (await member.roles.add(verifiedRole));
+        if (!verifiedRole) {
+          verifiedRole = await guild.roles.create({
+            name: 'verified',
+            permissions: ['SEND_MESSAGES', 'VIEW_CHANNEL'],
+          });
+        }
+
+        if (!verifiedRole) {
+          await msg.channel.send(
+            'There is a problem with the verified role for now! Please try again later'
+          );
+        }
+
+        await member.roles.add(verifiedRole);
 
         await msg.channel.send(
           `Alright, you are now verified in ${guild.name}`

@@ -4,6 +4,7 @@ import path from 'path';
 import 'dotenv/config';
 import { IButtonEvent } from './types/IEvent';
 
+// Initialize client with intents
 const client = new Discord.Client({
   intents: [
     Intents.FLAGS.GUILDS,
@@ -14,6 +15,7 @@ const client = new Discord.Client({
 
 const TOKEN = process.env.BOT_TOKEN!;
 
+// Custom properties on client object (only for typescript)
 declare module 'discord.js' {
   export interface Client {
     commands: Collection<string, ICommand>;
@@ -24,6 +26,7 @@ declare module 'discord.js' {
 client.commands = new Collection();
 client.buttons = new Collection();
 
+// Login the bot
 client.login(TOKEN).then(() => {
   ['handlers'].forEach((h) => {
     require(path.join(__dirname, h))(client);

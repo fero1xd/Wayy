@@ -1,6 +1,6 @@
 import fs from 'fs';
-const fsPromises = fs.promises;
 import path from 'path';
+const fsPromises = fs.promises;
 
 const readFiles = async (dir: string, files: string[]) => {
   const items = await fsPromises.readdir(
